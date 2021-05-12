@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Scenes/NoteC2.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Scenes/ViolinAttack.gd" type="Script" id=2]
+
+[node name="ViolinAttack" type="Node2D"]
+scale = Vector2( 0.5, 0.5 )
+script = ExtResource( 2 )
+
+[node name="Note1" parent="." instance=ExtResource( 1 )]
+position = Vector2( 264.901, 0 )
+
+[node name="Note2" parent="." instance=ExtResource( 1 )]
+position = Vector2( -271.636, 2.24487 )
+[connection signal="tree_exited" from="Note1" to="." method="_on_Note1_tree_exited"]
+[connection signal="tree_exited" from="Note2" to="." method="_on_Note2_tree_exited"]

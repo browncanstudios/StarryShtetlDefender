@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Scenes/DrumAttack.gd" type="Script" id=1]
+[ext_resource path="res://Scenes/NoteC1.tscn" type="PackedScene" id=2]
+
+[node name="DrumAttack" type="Node2D"]
+scale = Vector2( 0.5, 0.5 )
+script = ExtResource( 1 )
+
+[node name="Note1" parent="." instance=ExtResource( 2 )]
+position = Vector2( -221.746, -317.5 )
+
+[node name="Note2" parent="." instance=ExtResource( 2 )]
+position = Vector2( 221.746, -325.06 )
+[connection signal="tree_exited" from="Note1" to="." method="_on_Note1_tree_exited"]
+[connection signal="tree_exited" from="Note2" to="." method="_on_Note2_tree_exited"]

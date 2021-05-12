@@ -1,0 +1,111 @@
+[gd_scene load_steps=17 format=2]
+
+[ext_resource path="res://Assets/Background/BG_Base.png" type="Texture" id=1]
+[ext_resource path="res://Assets/Background/BG_Stars.png" type="Texture" id=2]
+[ext_resource path="res://Scenes/Planet.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Scenes/Clarinet.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Scenes/Trombone.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Scenes/Saxophone.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Scenes/Drum.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Scenes/Violin.tscn" type="PackedScene" id=8]
+[ext_resource path="res://Scenes/Bass.tscn" type="PackedScene" id=9]
+[ext_resource path="res://Scenes/Game.gd" type="Script" id=10]
+[ext_resource path="res://Assets/UI/Button_Base.png" type="Texture" id=11]
+[ext_resource path="res://Assets/UI/Button_Pressed.png" type="Texture" id=12]
+[ext_resource path="res://Assets/UI/Text_Retry.png" type="Texture" id=13]
+[ext_resource path="res://Assets/UI/Text_GameOver.png" type="Texture" id=14]
+[ext_resource path="res://Assets/Font/TitanOne-Regular.ttf" type="DynamicFontData" id=15]
+
+[sub_resource type="DynamicFont" id=1]
+size = 48
+font_data = ExtResource( 15 )
+
+[node name="Game" type="Node"]
+script = ExtResource( 10 )
+
+[node name="Background" type="Sprite" parent="."]
+position = Vector2( 1024, 1024 )
+texture = ExtResource( 1 )
+
+[node name="Stars" type="Sprite" parent="."]
+position = Vector2( 1024, 1024 )
+texture = ExtResource( 2 )
+
+[node name="Clarinet" parent="." instance=ExtResource( 4 )]
+position = Vector2( 628.579, 287.35 )
+
+[node name="Trombone" parent="." instance=ExtResource( 5 )]
+position = Vector2( 287.35, 1021.44 )
+
+[node name="Planet" parent="." instance=ExtResource( 3 )]
+position = Vector2( 1024, 1024 )
+
+[node name="Saxophone" parent="." instance=ExtResource( 6 )]
+position = Vector2( 1526.55, 303.064 )
+
+[node name="Violin" parent="." instance=ExtResource( 8 )]
+position = Vector2( 682.457, 1706.14 )
+
+[node name="Bass" parent="." instance=ExtResource( 9 )]
+position = Vector2( 1589.41, 1625.32 )
+
+[node name="Drum" parent="." instance=ExtResource( 7 )]
+position = Vector2( 1775.73, 882.255 )
+
+[node name="AsteroidSpawnTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="RetryButton" type="TextureButton" parent="."]
+margin_left = 709.167
+margin_top = 891.059
+margin_right = 1334.17
+margin_bottom = 1160.06
+texture_normal = ExtResource( 11 )
+texture_pressed = ExtResource( 12 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Sprite" type="Sprite" parent="RetryButton"]
+position = Vector2( 319.814, 135.818 )
+scale = Vector2( 0.756169, 0.756169 )
+texture = ExtResource( 13 )
+
+[node name="GameOver" type="Sprite" parent="."]
+position = Vector2( 1018.02, 675.318 )
+texture = ExtResource( 14 )
+
+[node name="ScoreTimer" type="Timer" parent="."]
+autostart = true
+
+[node name="Version" type="Label" parent="."]
+margin_left = 1873.51
+margin_top = 1973.43
+margin_right = 2026.51
+margin_bottom = 2029.43
+custom_fonts/font = SubResource( 1 )
+text = "v0.1.0"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Score" type="Label" parent="."]
+margin_left = 34.024
+margin_top = 15.5115
+margin_right = 187.024
+margin_bottom = 71.5115
+custom_fonts/font = SubResource( 1 )
+text = "score: 0"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+[connection signal="input_event" from="Clarinet" to="." method="_on_Clarinet_input_event"]
+[connection signal="input_event" from="Trombone" to="." method="_on_Trombone_input_event"]
+[connection signal="tree_exited" from="Planet" to="." method="_on_Planet_tree_exited"]
+[connection signal="input_event" from="Saxophone" to="." method="_on_Saxophone_input_event"]
+[connection signal="input_event" from="Violin" to="." method="_on_Violin_input_event"]
+[connection signal="input_event" from="Bass" to="." method="_on_Bass_input_event"]
+[connection signal="input_event" from="Drum" to="." method="_on_Drum_input_event"]
+[connection signal="timeout" from="AsteroidSpawnTimer" to="." method="_on_AsteroidSpawnTimer_timeout"]
+[connection signal="pressed" from="RetryButton" to="." method="_on_RetryButton_pressed"]
+[connection signal="timeout" from="ScoreTimer" to="." method="_on_ScoreTimer_timeout"]
