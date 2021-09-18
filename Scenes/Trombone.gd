@@ -10,8 +10,8 @@ func _ready():
 
 func _process(delta):
 	if active:
-		var mouse_position = get_viewport().get_mouse_position()
-		rotation = (mouse_position - position).angle() - PI / 2
+		var global_mouse_position = get_global_mouse_position()
+		rotation = (global_mouse_position - global_position).angle() - PI / 2
 
 func activate():
 	modulate.a = 1.0

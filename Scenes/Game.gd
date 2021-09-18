@@ -100,7 +100,7 @@ func _on_AsteroidSpawnTimer_timeout():
 	var asteroid = load("res://Scenes/Asteroid.tscn").instance()
 
 	var angle = rng.randf_range(0, 2 * PI)
-	var p = target + get_viewport().size.x * 2.0 * Vector2(cos(angle), sin(angle))
+	var p = target + (2048 + 128) * Vector2(cos(angle), sin(angle))
 	var v = rng.randf_range(2048 * 0.05, 2048 * 0.1) * (target - p).normalized()
 
 	asteroid.init(p, v)
@@ -118,4 +118,4 @@ func _on_Planet_tree_exited():
 
 func _on_ScoreTimer_timeout():
 	score += 1
-	$Score.set_text("score: " + str(score))
+	$CanvasLayer/TopGUI/HBoxContainer/MarginContainer/Score.set_text("score: " + str(score))
